@@ -7,9 +7,10 @@ const KetteringList = props => {
             return (
                 <DisplayItem
                     key={obj.id}
+                    
                     onClick={() => props.updateSelected(obj.id)} data={obj} >
                     {
-                        props.remove && <button onClick={(e) => props.remove(e, obj.id)}>Remove</button>
+                        props.remove && <button onClick={(e) => props.remove(e, obj.id,1)}>Remove</button>
                     }
                 </DisplayItem>
             )

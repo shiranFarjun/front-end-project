@@ -3,25 +3,26 @@ import suppliersAPI from '../../../api/suppliersAPI';
 import KetteringList from './KetteringList';
 import EditKettering from './EditKettering';
 
-class Kettering extends Component {
+class CateringFood extends Component {
     state = {
         kettering: [],
         selected: null
     }
 
     componentDidMount = () => {
-        this.fetchAllKettering();
+        this.fetchAllKettering(1);               
     }
 
-    fetchAllKettering = async () => {
+    fetchAllKettering = async (id) => {
         try {
-            const response = await suppliersAPI.get('/kettering');
+            const response = await suppliersAPI.get(`/${id}/cards-suppliers`);   //id=1 -->will give all ketring ,2-->will give location
             if (response.status !== 200) {
                 throw response.statusText;
             }
             this.setState({ kettering: response.data });
+            console.log('this.state.kettering success',this.state.kettering );
         } catch (err) {
-            console.log(error);
+            console.log(err)
             throw err;
         }
     }
@@ -33,13 +34,14 @@ class Kettering extends Component {
         }
     }
 
-    deleteObjKettering = async (e, id) => {
-        e.preventDefault();
-        e.stopPropagation();
+    deleteObjKettering = async (e,idChild,idCategory) => {    ///****** */
+        console.log('deleteObj Kettering in food',e)
+        // e.preventDefault();
+        // e.stopPropagation();
         try {
-            const res = await suppliersAPI.delete(`/kettering/${id}`);
-            console.log(res);
-            this.fetchAllKettering();
+            const res = await suppliersAPI.delete(`/${idCategory}/cards-suppliers/${idChild}`);
+            console.log('sucssess delete',res);
+            this.fetchAllKettering(idCategory);
         } catch (err) {
             throw err;
         }
@@ -54,8 +56,10 @@ class Kettering extends Component {
         if (this.state.selected) {
             display =
                 <EditKettering
-                    data={this.state.selected}
+                data={this.state.kettering}
+                    selected={this.state.selected}
                     reset={this.resetSelected}
+                    deleteObj={this.deleteObjKettering}
                 />
         } else {
             display =
@@ -74,4 +78,6 @@ class Kettering extends Component {
     }
 }
 
-export default Kettering;
+export default CateringFood;
+
+
