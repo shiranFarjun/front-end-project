@@ -63,7 +63,7 @@ class EditKettering extends Component {
             }
             console.log('idChild', idChild)
             console.log('dataObj', dataObj)
-            const res = await suppliersAPI.put(`/${1}/cards-suppliers/${idChild}`, dataObj);
+            const res = await suppliersAPI.put(`/${1}/cards-suppliers/${idChild}`, data);
             if (Number(res.status) !== 200)
                 return;
         } catch (e) {

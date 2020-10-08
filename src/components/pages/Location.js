@@ -119,7 +119,22 @@ const Location = () => {
         return () => map.remove();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return <div id="map" className="map-container" ref={mapContainerRef} />;
+    return (
+        <div>
+            <div id="map" className="map-container" ref={mapContainerRef} />
+
+            <form onSubmit={console.log('form')} class="flex-form">
+                <label for="from">
+                    <i class="ion-location"></i>
+                </label>
+                <input type="search" placeholder="Where do you want to go?" />
+                <input type="submit" value="Search" />
+            </form>
+
+        </div>
+
+    )
+
 };
 
 export default Location;

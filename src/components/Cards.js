@@ -21,7 +21,7 @@ function Cards() {
                             src={img1}
                             text='Eat  sadbqakjsd,bnma.s'
                             label='Catering                  '
-                            path='/Catering food'
+                            path='/Catering'
                         />
                         <CardItem
                             src={img2}

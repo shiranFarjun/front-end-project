@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import Routes from '../../router/Routes'
 
-import {Button} from '../Button'
+import { Button } from '../Button'
 import './Navbar.css'
 
-
+import img from '../../img/logo.ico'
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -14,24 +14,30 @@ function Navbar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
     const showButton = () => {
-        if(window.innerWidth<=960){
+        if (window.innerWidth <= 960) {
             setButton(false);
-        }else{
+        } else {
             setButton(true);
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         showButton();
-    },[]);
+    }, []);
 
-    window.addEventListener('resize',showButton);
+    window.addEventListener('resize', showButton);
+
+    const style={
+        width:'40px',
+        height:'40px', 
+        filter:'invert(100%)',
+    }
 
     return <>
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to={Routes.home} className="navbar-logo" onClick={closeMobileMenu}>
-                    Logo <i className="fa fa-typo3" />
+                <Link to={Routes.home} className="navbar-logo" onClick={closeMobileMenu} >
+                    <img src={img} alt='' style={style} />
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fa fa-times' : 'fa fa-bars'} />
@@ -58,14 +64,14 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to={Routes.signUp} 
+                        <Link to={Routes.signUp}
                             className='nav-links-mobile'
                             onClick={closeMobileMenu}>
                             Sign Up
                         </Link>
                     </li>
                 </ul>
-                {button&&<Button buttonStyle='btn-outline'>SIGN UP</Button>}
+                {button && <Button buttonStyle='btn-outline'>SIGN UP</Button>}
             </div>
         </nav>
 

@@ -60,3 +60,11 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.flex-form{
+    background:red;
+    width:20%;
+    position:absolute;
+    left: 70%;
+    right: 10%;
+}
