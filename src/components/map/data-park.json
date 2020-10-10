@@ -1,0 +1,20 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          // there are different geometry types, but Point is best
+          // for this use case of simple latitude/longitude pairs
+          "type": "Point",
+          "coordinates": [35.2,31.4] // longitude, latitude
+        },
+        "properties": {
+          // you can put almost anything here, it's kind of like
+          // the "metadata" for the feature
+          "name": "Some Cool Point",
+          "PARK_ID":56
+        }
+      }
+    ]
+  }

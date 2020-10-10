@@ -1,11 +1,11 @@
 import suppliersAPI from './suppliersAPI';
 
-const getAll = async(idCategory) => {
-    return await suppliersAPI.get(`/${idCategory}/cards-suppliers`); 
+const getAll = async (idCategory) => {
+    return await suppliersAPI.get(`/${idCategory}/cards-suppliers`);
 };
 
-const get =async (idCategory, idChild) => {
-    return await suppliersAPI.get(`/${idCategory}/cards-suppliers/${idChild}`); 
+const get = async (idCategory, idChild) => {
+    return await suppliersAPI.get(`/${idCategory}/cards-suppliers/${idChild}`);
 };
 
 const create = async (idCategory, data) => {
@@ -19,13 +19,15 @@ const remove = async (idCategory, idChild) => {
     return await suppliersAPI.delete(`/${idCategory}/cards-suppliers/${idChild}`);
 };
 
-const removeAll = async(idCategory) => {
-    return await suppliersAPI.delete(`/${idCategory}/cards-suppliers`); 
+const removeAll = async (idCategory) => {
+    return await suppliersAPI.delete(`/${idCategory}/cards-suppliers`);
 };
 
-// const findByCompany = company => {
-//     return suppliersAPI.get(`/tutorials?company=${company}`);
-// };
+const findByCompany = async (idCategory, name) => {
+    return await suppliersAPI.get(`/${idCategory}/cards-suppliers/`, {
+        params: { 'nameCompany': name }
+    });
+};
 
 export default {
     getAll,
@@ -34,5 +36,5 @@ export default {
     update,
     remove,
     removeAll,
-    // findByCompany
+    findByCompany
 };

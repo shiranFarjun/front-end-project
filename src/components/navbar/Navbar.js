@@ -5,7 +5,7 @@ import Routes from '../../router/Routes'
 import { Button } from '../Button'
 import './Navbar.css'
 
-import img from '../../img/logo.ico'
+import img from '../../img/logo.png'
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -30,7 +30,6 @@ function Navbar() {
     const style={
         width:'40px',
         height:'40px', 
-        filter:'invert(100%)',
     }
 
     return <>
@@ -71,7 +70,7 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
-                {button && <Button buttonStyle='btn-outline'>SIGN UP</Button>}
+                {button && <Button path={Routes.signUp} buttonStyle='btn-outline'>SIGN UP</Button>}
             </div>
         </nav>
 

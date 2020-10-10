@@ -7,8 +7,11 @@ import Navbar from './components/navbar/Navbar';
 import Home from './components/pages/Home'
 import SignUp from './components/pages/SignUp'
 import Location from './components/pages/Location'
+// import Map from './components/map/Map'
 import Design from './components/pages/Design'
 import Catering from './components/pages/Catering'
+import AboutUs from './components/pages/AboutUs'
+import ViewLocation from './components/pages/ViewLocation'
 import './app.css';
 
 
@@ -30,7 +33,8 @@ function App() {
           <Route path={Routes.location} exact component={Location} />
           <Route path={Routes.design} exact component={Design} />
           <Route path={Routes.catering} exact component={Catering} />
-
+          <Route path={Routes.AboutUs} exact component={AboutUs} />
+          <Route path={Routes.viewLocation} exact component={ViewLocation} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -5,7 +5,9 @@ const Routes = {
     signUp:'/sign-up',
     location:'/Location',
     design:'/Design',
-    catering:'/Catering'
+    catering:'/Catering',
+    AboutUs:'/about-us',
+    viewLocation:'/viewLocation'
 }
 
 export default Routes;
