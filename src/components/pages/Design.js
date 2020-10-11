@@ -28,7 +28,7 @@ const Design = () => {
     const [currentCardDesign, setCurrentCardDesign] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchByCompany, setSearchByCompany] = useState("");
-    const imgSource=[d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16]
+    const imgSource = [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16]
 
     useEffect(() => {
         retrieveDesign();
@@ -85,37 +85,32 @@ const Design = () => {
 
     return (
         <div className="list row">
-            <div className="col-md-8">
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search by company name"
-                        value={searchByCompany}
-                        onChange={onChangeSearch}
-                    />
-                    <div className="input-group-append">
-                        <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={findByCompany}>Search</button>
-                    </div>
+            <div className="container-search">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search by company name"
+                    value={searchByCompany}
+                    onChange={onChangeSearch}
+                />
+                <div className="button-search">
+                    <button
+                        type="button"
+                        onClick={findByCompany}>Search</button>
                 </div>
             </div>
-            <h1> Company Design</h1>
+            <h1 className="header-view-products"> Company Design</h1>
+            <div className="container-fluid d-flex justify-content-center">
+                <ul className="row">
+                    {DesignList &&
+                        DesignList.map((design, index) => (
+                            <li className="col-md-4" onClick={() => setActiveDesign(design, index)} key={index}>
+                                <Card img={imgSource[index]} title={design.company} name={design.firstName, design.lastName} phone={design.phone} />
+                            </li>
+                        ))}
+                </ul>
+            </div>
 
-            <div className="col-md-6">
-                <div className="container-fluid d-flex justify-content-center">
-                    <ul className="row">
-                        {DesignList &&
-                            DesignList.map((design, index) => (
-                                <li className="col-md-4" onClick={() => setActiveDesign(design, index)} key={index}>
-                                    <Card img={imgSource[index]} title={design.company} name={design.firstName, design.lastName} phone={design.phone} />
-                                </li>
-                            ))}
-                    </ul>
-                </div>
-            </div>
         </div>
     )
 };

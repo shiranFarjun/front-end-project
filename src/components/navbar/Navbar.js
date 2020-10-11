@@ -28,15 +28,15 @@ function Navbar() {
     window.addEventListener('resize', showButton);
 
     const style={
-        width:'40px',
-        height:'40px', 
+        width:'140px',
+        height:'60px', 
     }
 
     return <>
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to={Routes.home} className="navbar-logo" onClick={closeMobileMenu} >
-                    <img src={img} alt='' style={style} />
+                <Link to={Routes.home}  onClick={closeMobileMenu} >
+                    <img className="navbar-logo" src={img} alt='' style={style} />
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fa fa-times' : 'fa fa-bars'} />

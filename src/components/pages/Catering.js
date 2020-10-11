@@ -37,7 +37,7 @@ const Catering = () => {
     const [currentCardCatering, setCurrentCardCatering] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchByCompany, setSearchByCompany] = useState("");
-    const imgSource=[k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16,k17,k18,k19,k20,k21,k22,k23,k24];
+    const imgSource = [k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23, k24];
 
     useEffect(() => {
         retrieveCatering();
@@ -45,7 +45,7 @@ const Catering = () => {
 
     const onChangeSearch = e => {
         const searchCompany = e.target.value;
-        console.log('searchCompany',searchCompany);
+        console.log('searchCompany', searchCompany);
         setSearchByCompany(searchCompany);
     };
 
@@ -83,7 +83,7 @@ const Catering = () => {
     };
 
     const findByCompany = () => {
-        console.log('in find by',searchByCompany)
+        console.log('in find by', searchByCompany)
         serviceSupplier.findByCompany(1, searchByCompany)
             .then(response => {
                 setCateringList(response.data);
@@ -96,36 +96,31 @@ const Catering = () => {
 
     return (
         <div className="list row">
-            <div className="col-md-8">
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search by title"
-                        value={searchByCompany}
-                        onChange={onChangeSearch}
-                    />
-                    <div className="input-group-append">
-                        <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={findByCompany}
-                        >Search</button>
-                    </div>
+            <div className="container-search">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search by company name"
+                    value={searchByCompany}
+                    onChange={onChangeSearch}
+                />
+                <div className="button-search">
+                    <button
+                        type="button"
+                        onClick={findByCompany}
+                    >Search</button>
                 </div>
             </div>
-            <div className="col-md-6">
-                <h1> Catering List</h1>
-                <div className="container-fluid d-flex justify-content-center">
-                    <ul className="row">
-                        {CateringList &&
-                            CateringList.map((catering, index) => (
-                                <li className="col-md-4" onClick={() => setActiveCatering(catering, index)} key={index}>
-                                    <Card img={imgSource[index]} title={catering.company} name={catering.firstName, catering.lastName} phone={catering.phone} />
-                                </li>
-                            ))}
-                    </ul>
-                </div>
+            <h1 className="header-view-products"> Catering List</h1>
+            <div className="container-fluid d-flex justify-content-center">
+                <ul className="row">
+                    {CateringList &&
+                        CateringList.map((catering, index) => (
+                            <li className="col-md-4" onClick={() => setActiveCatering(catering, index)} key={index}>
+                                <Card img={imgSource[index]} title={catering.company} name={catering.firstName, catering.lastName} phone={catering.phone} />
+                            </li>
+                        ))}
+                </ul>
             </div>
         </div>
     )

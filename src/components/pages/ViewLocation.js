@@ -5,17 +5,15 @@ import mapboxgl from 'mapbox-gl';
 import fetchFakeData from '../../api/fetchFakeData'
 import Popup from '../map/Popup'
 import Marker from '../map/Marker'
-
-
-
 import '../../app.css'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-const ViewLocation = () => {
+const ViewLocation = (props) => {
+
+    // console.log(,);
     const mapContainerRef = useRef(null);
     const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }));  //// offset puts the popup 15px above the feature
-
     useEffect(() => {
         const features = {
             "type": "FeatureCollection",
@@ -24,7 +22,7 @@ const ViewLocation = () => {
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",        // there are different geometry types, but Point is best  for this use case of simple latitude/longitude pairs
-                        "coordinates": [35.21, 31.771] // longitude, latitude
+                        "coordinates": [props.location.param1[0], props.location.param1[1]] // longitude, latitude
                     },
                     "properties": {
                         // you can put almost anything here, it's kind of like
@@ -34,12 +32,11 @@ const ViewLocation = () => {
                 }
             ]
         }
-        console.log(features.features[0].geometry.coordinates)
+        // console.log(features.features[0].geometry.coordinates)
         const map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            // center: features.features[0].geometry.coordinates,
-            center: [35.21, 31.771],
+            center: features.features[0].geometry.coordinates,
             zoom: 9 // starting zoom
         });
 
@@ -49,20 +46,35 @@ const ViewLocation = () => {
         map.on('moveend', async () => {
             // get center coordinates
             const { lng, lat } = map.getCenter();
-            // fetch new data
-            const results = await fetchFakeData({ longitude: lng, latitude: lat });
-            // iterate through the feature collection and append marker to the map for each feature
-            results.features.forEach(result => {
-                const { id, geometry } = result;
-                // create marker node
-                const markerNode = document.createElement('div');
-                ReactDOM.render(<Marker id={id} />, markerNode);
-                // add marker to map
-                new mapboxgl.Marker(markerNode)
-                    .setLngLat(geometry.coordinates)
-                    .addTo(map);
-            });
+            //create marker node
+            const markerNode = document.createElement('div');
+            ReactDOM.render(<Marker id={1} />, markerNode);
+            // add marker to map
+            new mapboxgl.Marker(markerNode)
+                .setLngLat([props.location.param1[0], props.location.param1[1]])
+                .addTo(map);
         });
+
+
+        // // add navigation control (the +/- zoom buttons)
+        // map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+        // map.on('moveend', async () => {
+        //     // get center coordinates
+        //     const { lng, lat } = map.getCenter();
+        //     // fetch new data
+        //     const results = await fetchFakeData({ longitude: lng, latitude: lat });
+        //     // iterate through the feature collection and append marker to the map for each feature
+        //     results.features.forEach(result => {
+        //         const { id, geometry } = result;
+        //         // create marker node
+        //         const markerNode = document.createElement('div');
+        //         ReactDOM.render(<Marker id={id} />, markerNode);
+        //         // add marker to map
+        //         new mapboxgl.Marker(markerNode)
+        //             .setLngLat([props.location.param1[0], props.location.param1[1]])
+        //             .addTo(map);
+        //     });
+        // });
         map.on('load', () => {
             // add the data source for new a feature collection with no features
             map.addSource('random-points-data', {
@@ -124,15 +136,11 @@ const ViewLocation = () => {
     return (
         <div>
             <div id="map" className="map-container" ref={mapContainerRef} />
-
-            <form onSubmit={console.log('form')} className="flex-form">
-                <label htmlFor="from">
-                    <i className="ion-location"></i>
-                </label>
-                <input type="search" placeholder="Where do you want to go?" />
-                <input type="submit" value="Search" />
-            </form>
-
+            <div className=" Specific-location-information">
+                <h2>{props.location.param3}</h2>
+                <h3>{props.location.param4}</h3>
+                <h4>{props.location.param5}</h4>
+            </div>
         </div>
 
     )
