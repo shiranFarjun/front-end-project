@@ -25,8 +25,8 @@ import d16 from '../../img/imgDesign/d16.jpg'
 
 const Design = () => {
     const [DesignList, setDesignList] = useState([]);
-    const [currentCardDesign, setCurrentCardDesign] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    // const [currentCardDesign, setCurrentCardDesign] = useState(null);
+    // const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchByCompany, setSearchByCompany] = useState("");
     const imgSource = [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16]
 
@@ -50,27 +50,27 @@ const Design = () => {
             });
     };
 
-    const refreshList = () => {
-        retrieveDesign();
-        setCurrentCardDesign(null);
-        setCurrentIndex(-1);
-    };
+    // const refreshList = () => {
+    //     retrieveDesign();
+    //     setCurrentCardDesign(null);
+    //     setCurrentIndex(-1);
+    // };
 
-    const setActiveDesign = (carDesign, index) => {
-        setCurrentCardDesign(carDesign);
-        setCurrentIndex(index);
-    };
+    // const setActiveDesign = (carDesign, index) => {
+    //     setCurrentCardDesign(carDesign);
+    //     setCurrentIndex(index);
+    // };
 
-    const removeAllDesign = () => {
-        serviceSupplier.removeAll()
-            .then(response => {
-                console.log(response.data);
-                refreshList();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
+    // const removeAllDesign = () => {
+    //     serviceSupplier.removeAll()
+    //         .then(response => {
+    //             console.log(response.data);
+    //             refreshList();
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // };
 
     const findByCompany = () => {
         serviceSupplier.findByCompany(2, searchByCompany)
@@ -101,11 +101,11 @@ const Design = () => {
             </div>
             <h1 className="header-view-products"> Company Design</h1>
             <div className="container-fluid d-flex justify-content-center">
-                <ul className="row">
-                    {DesignList &&
+                <ul className="row">   
+                    {DesignList && ///onClick={() => setActiveDesign(design, index)} 
                         DesignList.map((design, index) => (
-                            <li className="col-md-4" onClick={() => setActiveDesign(design, index)} key={index}>
-                                <Card img={imgSource[index]} title={design.company} name={design.firstName, design.lastName} phone={design.phone} />
+                            <li className="col-md-4" key={index}>
+                                <Card img={imgSource[index]} title={design.company} name={design.firstName} phone={design.phone} />
                             </li>
                         ))}
                 </ul>

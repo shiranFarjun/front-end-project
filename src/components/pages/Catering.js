@@ -34,8 +34,8 @@ import k24 from '../../img/imgCatering/k24.jpg'
 
 const Catering = () => {
     const [CateringList, setCateringList] = useState([]);
-    const [currentCardCatering, setCurrentCardCatering] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    // const [currentCardCatering, setCurrentCardCatering] = useState(null);
+    // const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchByCompany, setSearchByCompany] = useState("");
     const imgSource = [k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k20, k21, k22, k23, k24];
 
@@ -60,27 +60,27 @@ const Catering = () => {
             });
     };
 
-    const refreshList = () => {
-        retrieveCatering();
-        setCurrentCardCatering(null);
-        setCurrentIndex(-1);
-    };
+    // const refreshList = () => {
+    //     retrieveCatering();
+    //     setCurrentCardCatering(null);
+    //     setCurrentIndex(-1);
+    // };
 
-    const setActiveCatering = (cardCatering, index) => {
-        setCurrentCardCatering(cardCatering);
-        setCurrentIndex(index);
-    };
+    // const setActiveCatering = (cardCatering, index) => {
+    //     setCurrentCardCatering(cardCatering);
+    //     setCurrentIndex(index);
+    // };
 
-    const removeAllCatering = () => {
-        serviceSupplier.removeAll()
-            .then(response => {
-                console.log(response.data);
-                refreshList();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
+    // const removeAllCatering = () => {
+    //     serviceSupplier.removeAll()
+    //         .then(response => {
+    //             console.log(response.data);
+    //             refreshList();
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // };
 
     const findByCompany = () => {
         console.log('in find by', searchByCompany)
@@ -114,10 +114,10 @@ const Catering = () => {
             <h1 className="header-view-products"> Catering List</h1>
             <div className="container-fluid d-flex justify-content-center">
                 <ul className="row">
-                    {CateringList &&
+                    {CateringList &&   //onClick={() => setActiveCatering(catering, index)}
                         CateringList.map((catering, index) => (
-                            <li className="col-md-4" onClick={() => setActiveCatering(catering, index)} key={index}>
-                                <Card img={imgSource[index]} title={catering.company} name={catering.firstName, catering.lastName} phone={catering.phone} />
+                            <li className="col-md-4"  key={index}>  
+                                <Card img={imgSource[index]} title={catering.company} name={catering.firstName} phone={catering.phone} />
                             </li>
                         ))}
                 </ul>
@@ -127,52 +127,3 @@ const Catering = () => {
 };
 
 export default Catering;
-
-// <button
-// className="m-3 btn btn-sm btn-danger"
-// //   onClick={removeAllCatering}
-// >
-// Remove All
-// </button>
-// </div>
-// <div className="col-md-6">
-// {currentCardCatering ? (
-// <div>
-//   <h4>Catering</h4>
-//   <div>
-//     <label>
-//       <strong>Company:</strong>
-//     </label>{" "}
-//     {currentCardCatering.nameCompany}
-//   </div>
-//   <div>
-//     <label>
-//       <strong>First Name:</strong>
-//     </label>{" "}
-//     {currentCardCatering.firstName}
-//   </div>
-//   <div>
-//     <label>
-//       <strong>Last  Name:</strong>
-//     </label>{" "}
-//     {currentCardCatering.lastName}
-//   </div>
-//   <div>
-//     <label>
-//       <strong>Phone:</strong>
-//     </label>{" "}
-//     {currentCardCatering.phone}
-//   </div>
-
-
-// </div>
-// ) : (
-// <div>
-//   <br />
-//   <p>Please click on a Catering...</p>
-// </div>
-// )}
-// </div>
-// </div>
-// );
-

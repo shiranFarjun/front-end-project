@@ -35,13 +35,14 @@ import l26 from '../../img/imgLoc/l26.jpg'
 
 const Location = () => {
     const [LocationList, setLocationList] = useState([]);
-    const [currentCardLocation, setCurrentCardLocation] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    // const [currentCardLocation, setCurrentCardLocation] = useState(null);
+    // const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchByCity, setSearchByCity] = useState("");
     const imgSource = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l13, l14, l15, l16, l18, l19, l20, l21, l22, l24, l25, l26]
 
     useEffect(() => {
         retrieveLocation();
+        // console.log(currentCardLocation,currentIndex)
     }, []);
 
     const onChangeSearch = e => {
@@ -61,28 +62,28 @@ const Location = () => {
             });
     };
 
-    const refreshList = () => {
-        retrieveLocation();
-        setCurrentCardLocation(null);
-        setCurrentIndex(-1);
-    };
+    // const refreshList = () => {
+    //     retrieveLocation();
+    //     setCurrentCardLocation(null);
+    //     setCurrentIndex(-1);
+    // };
 
-    const setActiveLocation = (cardLocation, index) => {
-        setCurrentCardLocation(cardLocation);
-        setCurrentIndex(index);
-        console.log('hi you clik on me ',index, cardLocation);
-    };
+    // const setActiveLocation = (cardLocation, index) => {
+    //     setCurrentCardLocation(cardLocation);
+    //     setCurrentIndex(index);
+    //     console.log('hi you clik on me ',index, cardLocation);
+    // };
 
-    const removeAllLocation = () => {
-        serviceLocation.removeAllLocation()
-            .then(response => {
-                console.log(response.data);
-                refreshList();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
+    // const removeAllLocation = () => {
+    //     serviceLocation.removeAllLocation()
+    //         .then(response => {
+    //             console.log(response.data);
+    //             refreshList();
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // };
 
     const findByCity = () => {
         serviceLocation.findByCity(searchByCity)
@@ -114,10 +115,10 @@ const Location = () => {
             <h1 className="header-view-products"> Rental companies</h1>
             <div className="container-fluid d-flex justify-content-center">
                 <ul className="row">
-                    {LocationList &&
+                    {LocationList &&    // onClick={() => setActiveLocation(place, index)}
                         LocationList.map((place, index) => (
-                            <li className="col-md-4" onClick={() => setActiveLocation(place, index)} key={index}>
-                                <CardDisplayInfo img={imgSource[index]} title={place.company} name={place.firstName, place.lastName}
+                            <li className="col-md-4" key={index}>
+                                <CardDisplayInfo img={imgSource[index]} title={place.company} name={place.firstName}
                                  phone={place.phone} path={Routes.viewLocation} lat={place.latitude} lng={place.longitude}/>
                             </li>
                         ))}

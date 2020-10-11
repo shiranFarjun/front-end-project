@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
 function CardDisplayInfo(props) {
-    const [lat, setLat] = useState(props.lat);
-    const [lng, setLng] = useState(props.lng);
-    const [city, setCity] = useState(props.city);
-    const [name, setName] = useState(props.name);
-    const [phone, setPhone] = useState(props.phone);
+    console.log("props.lat,props.lng",props.lat,props.lng);
+
 
     const InfoLink = { 
         pathname: props.path, 
-        param1: [lng,lat,city,name,phone] ,
+        param1: props.lng,
+        param2:props.lat
       };
     return (
         <>

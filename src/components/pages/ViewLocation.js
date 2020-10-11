@@ -11,7 +11,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const ViewLocation = (props) => {
 
-    // console.log(,);
+    console.log('props.location.param1, props.location.param2',props.location.param1, props.location.param2);
     const mapContainerRef = useRef(null);
     const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }));  //// offset puts the popup 15px above the feature
     useEffect(() => {
@@ -22,7 +22,7 @@ const ViewLocation = (props) => {
                     "type": "Feature",
                     "geometry": {
                         "type": "Point",        // there are different geometry types, but Point is best  for this use case of simple latitude/longitude pairs
-                        "coordinates": [props.location.param1[0], props.location.param1[1]] // longitude, latitude
+                        "coordinates": [props.location.param1, props.location.param2] // longitude, latitude
                     },
                     "properties": {
                         // you can put almost anything here, it's kind of like
@@ -36,7 +36,7 @@ const ViewLocation = (props) => {
         const map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            center: features.features[0].geometry.coordinates,
+            center:  features.features[0].geometry.coordinates,
             zoom: 9 // starting zoom
         });
 
@@ -51,7 +51,7 @@ const ViewLocation = (props) => {
             ReactDOM.render(<Marker id={1} />, markerNode);
             // add marker to map
             new mapboxgl.Marker(markerNode)
-                .setLngLat([props.location.param1[0], props.location.param1[1]])
+                .setLngLat([lng, lat])
                 .addTo(map);
         });
 
