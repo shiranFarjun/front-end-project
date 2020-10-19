@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import Routes from '../../router/Routes'
 
-import { Button } from '../Button'
 import './Navbar.css'
 
-import img from '../../img/logo.png'
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -27,16 +25,16 @@ function Navbar() {
 
     window.addEventListener('resize', showButton);
 
-    const style={
-        width:'140px',
-        height:'60px', 
+    const style = {
+        width: '140px',
+        height: '60px',
     }
 
     return <>
         <nav className="navbar">
             <div className="navbar-container">
-                <Link to={Routes.home}  onClick={closeMobileMenu} >
-                    <img className="navbar-logo" src={img} alt='' style={style} />
+                <Link to={Routes.home} onClick={closeMobileMenu} >
+                    home
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fa fa-times' : 'fa fa-bars'} />
@@ -70,8 +68,7 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
-                {button && <Button path={Routes.signUp} buttonStyle='btn-outline'>SIGN UP</Button>}
-            </div>
+\            </div>
         </nav>
 
     </>
