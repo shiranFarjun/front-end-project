@@ -1,20 +1,47 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-
+import React, { useEffect, useState } from "react";
+import api from '../../api/apiOption'
+import {Button} from './../Button'
 
 function Home() {
-    const { register, handleSubmit } = useForm();
+    const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
 
     const onSubmit = data => {
-        console.log(data);
+        data.preventDefault();
+        createUser();
     };
 
+    const createUser = () => {
+        api.create(name)
+            .then(response => {
+                console.log('create user', response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    // useEffect(() => {
+
+
+    // }, [])
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input name="firstName" ref={register} />
-            <input name="lastName" ref={register} />
-            <input type="submit" />
-        </form>
+        <div>
+            <form className="form-container" onSubmit={onSubmit}>
+                <input name="firstName" value={name} type="text" name="name" onChange={(e) => setName(e.target.value)} />
+                <input name="lastName" value={userName} type="text" name="userName" onChange={(e) => setUserName(e.target.value)} />
+                <input type="submit" />
+            </form>
+
+            <Button
+                path='/firstPage'
+                className='btns'
+                buttonStyle='btn-outline'
+                buttonSize='btn-large'>Start quiz
+            </Button>
+        </div>
+
     );
 };
 
@@ -46,8 +73,8 @@ function Home() {
 //     // this useEffect will run once
 //     // similar to componentDidMount()
 //     useEffect(() => {
-        axios.get("https://fathomless-meadow-50087.herokuapp.com/quiz")
-            .then(res =>console.log(res.data.data[0]))
+// axios.get("https://fathomless-meadow-50087.herokuapp.com/quiz")
+//     .then(res =>console.log(res.data.data[0]))
 //             .then(
 //                 (result) => {
 //                     console.log('result',result)
