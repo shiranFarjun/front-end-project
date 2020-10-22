@@ -1,6 +1,6 @@
 const Routes = {
     home: '/',
-    firstPage:'/firstPage'
+    userAnswer:'/UserAnswer'
 }
 
 export default Routes;

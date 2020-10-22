@@ -19,3 +19,4 @@
 [1021/153244.999:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\shira\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\7cd1440e-438a-47f1-9c77-893985e6cf84: The system cannot find the path specified. (0x3)
 [1021/153245.000:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\shira\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\cb4a68a4-c238-4889-8874-443e61c0a328: The system cannot find the path specified. (0x3)
 [1021/153245.001:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\shira\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\acc8bd40-e989-4791-ac05-e21a00bdfe09: The system cannot find the path specified. (0x3)
+[1022/195315.617:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

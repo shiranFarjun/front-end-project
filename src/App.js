@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Routes from './router/Routes';
-// import Navbar from './components/navbar/Navbar';
 import Home from './components/pages/Home'
-import FirstPage from './components/pages/firstPage'
+import UserAnswer from './components/pages/UserAnswer'
 import './app.css';
 
 
@@ -14,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path={Routes.home} exact component={Home} />
-          <Route path={Routes.firstPage} exact component={FirstPage} />
+          <Route path={Routes.userAnswer} exact component={UserAnswer} />
         </Switch>
       </BrowserRouter>
     </div>

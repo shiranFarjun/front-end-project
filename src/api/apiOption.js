@@ -1,19 +1,19 @@
 import apiBase from './apiBase';
 
-const getAll = async (idCategory) => {
-    return await apiBase.get(`/${idCategory}/cards-suppliers`);
+const getAllQuiz = async () => {   //////////////
+    return await apiBase.get(`/quiz`);
 };
 
-const get = async (idCategory, idChild) => {
-    return await apiBase.get(`/${idCategory}/cards-suppliers/${idChild}`);
-};
+// const get = async (idCategory, idChild) => {
+//     return await apiBase.get(`/${idCategory}/cards-suppliers/${idChild}`);
+// };
 
-const create = async (username) => {
+const create = async (username) => {           /////////
     return apiBase.post(`/quiz/${username}/create`);
 };
-const update = async (idCategory, idChild, data) => {
-    return apiBase.put(`/${idCategory}/cards-suppliers/${idChild}`, data);
-};
+// const updateUser = async (idCategory, idChild, data) => {
+//     return apiBase.put(`/quiz/${username}/update`, data);
+// };
 
 const remove = async (idCategory, idChild) => {
     return await apiBase.delete(`/${idCategory}/cards-suppliers/${idChild}`);
@@ -30,10 +30,10 @@ const findByCompany = async (idCategory, name) => {
 };
 
 export default {
-    getAll,
-    get,
+    getAllQuiz,
+    // get,
     create,
-    update,
+    // update,
     remove,
     removeAll,
     findByCompany
