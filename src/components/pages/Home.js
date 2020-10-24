@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import apiOption from '../../api/apiOption'
+import ApiOption from '../../api/ApiOption'
 import Routes from './../../router/Routes'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function Home() {
+    let history = useHistory();
     const [name, setName] = useState('');
-    const newTo = {
-        pathname: `${Routes.userAnswer}`,
-        param1: name
-    };
 
     const onSubmit = data => {
         data.preventDefault();
         createUser();
+        history.push({
+            pathname: `${Routes.userAnswer}`,
+            customNameData: name,
+        });
     };
 
     const createUser = () => {
-        apiOption.create(name)
+        ApiOption.create(name)
             .then(response => {
                 console.log('create user', response.data);
             })
@@ -34,12 +35,10 @@ function Home() {
                 <li>Share it with your friends</li>
                 <li>See their results & discover your real best friends</li>
             </ol>
-            <form className="form-container" onClick={onSubmit}>
+            <form className="form-container" onSubmit={onSubmit}>
                 <label>What's your name?</label>
                 <input className="firstName" value={name} type="text" name="name" onChange={(e) => setName(e.target.value)} />
-                <Link to={newTo} >
-                    <button >Get Started</button>
-                </Link>
+                <button type="submit">Get Started</button>
             </form>
         </div>
     );

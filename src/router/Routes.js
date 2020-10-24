@@ -1,6 +1,8 @@
 const Routes = {
     home: '/',
-    userAnswer:'/UserAnswer'
+    userAnswer:'/UserAnswer',
+    viewMyAnswers:'/viewMyAnswers',
+    newFriend:'/quiz/:username/newQuizFriend/'
 }
 
 export default Routes;

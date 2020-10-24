@@ -1,17 +1,17 @@
+.container-cards{
+    margin:2%;
+}
+
 .quiz-card{
     display:flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
     border: 2px solid black;
-    margin:4%;
+    margin:auto;
 }
 
-.input[type="radio"] {
+.quiz-card input{
     border: 1px solid gray;
     padding:2%;
 
-}
-
-label {
-    display: block;
 }

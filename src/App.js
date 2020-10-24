@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Routes from './router/Routes';
 import Home from './components/pages/Home'
 import UserAnswer from './components/pages/UserAnswer'
+import ViewMyAns from './components/ViewMyAns'
+
 import './app.css';
 
 
@@ -14,6 +16,9 @@ function App() {
         <Switch>
           <Route path={Routes.home} exact component={Home} />
           <Route path={Routes.userAnswer} exact component={UserAnswer} />
+          <Route path={Routes.viewMyAnswers} exact component={ViewMyAns} />
+          <Route path={Routes.} exact component={} />
+
         </Switch>
       </BrowserRouter>
     </div>
@@ -21,10 +26,3 @@ function App() {
 }
 
 export default App;
-
-// <Route path={Routes.signUp} exact render={(props) => <SignUp handleChange={handleChange} data={data}  {...props} />} />
-// <Route path={Routes.location} exact component={Location} />
-// <Route path={Routes.design} exact component={Design} />
-// <Route path={Routes.catering} exact component={Catering} />
-// <Route path={Routes.AboutUs} exact component={AboutUs} />
-// <Route path={Routes.viewLocation} exact component={ViewLocation} />
