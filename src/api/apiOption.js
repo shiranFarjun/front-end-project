@@ -1,13 +1,10 @@
 import ApiBase from './ApiBase';
-import axios from 'axios';
 
 const getAllQuiz = async () => {   
     return await ApiBase.get('/quiz');
 };
 
-// const get = async (idCategory, idChild) => {
-//     return awaitApiBase.get(`/${idCategory}/cards-suppliers/${idChild}`);
-// };
+//////////  Requests for user    ///////////////
 
 const create = async (username) => {       
     return await ApiBase.post(`/quiz/${username}/create`);
@@ -18,30 +15,41 @@ const updateUser = async (username, data) => {
 };
 
 const getUser = async (username) => {   
-    return await  axios.get(`http://localhost:3006/quiz/${username}`);
+    return await  ApiBase.get(`quiz/${username}`);
 };
 
-const remove = async (idCategory, idChild) => {
-    return await ApiBase.delete(`/${idCategory}/cards-suppliers/${idChild}`);
+const getAllResults = async (username) => {   
+    return await  ApiBase.get(`/quiz/results/${username}`);
 };
 
-const removeAll = async (idCategory) => {
-    return await ApiBase.delete(`/${idCategory}/cards-suppliers`);
+//////////////   Requests for friends /////////////
+
+const createFriend = async (username,friendName) => {       
+    return await ApiBase.post(`/quiz/${username}/answer/${friendName}/create`);
 };
 
-const findByCompany = async (idCategory, name) => {
-    return await ApiBase.get(`/${idCategory}/cards-suppliers/`, {
-        params: { 'nameCompany': name }
-    });
+const updateFriend = async (username,friendName, data) => {
+    return await ApiBase.put(`/quiz/${username}/answer/${friendName}/update`,data);
 };
+
+const getFriend = async (username) => {   
+    return await  ApiBase.get(`/quiz/results/${username}`);
+};
+
+const getScore = async (username,friendName) => {   
+    return await  ApiBase.get(`/quiz/${username}/answer/${friendName}/getScore`);
+};
+
+
 
 export default {
     getAllQuiz,
-    // get,
     create,
     updateUser,
     getUser,
-    remove,
-    removeAll,
-    findByCompany
+    createFriend,
+    updateFriend,
+    getFriend,
+    getScore,
+    getAllResults
 };

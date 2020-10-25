@@ -19,7 +19,8 @@
     "react-map-gl": "^5.2.8",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4"
+    "react-scripts": "^3.4.4",
+    "window-location-origin": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

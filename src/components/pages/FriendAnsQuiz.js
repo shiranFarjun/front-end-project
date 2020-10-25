@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import {useHistory } from 'react-router-dom'
 
+import React, { useEffect, useState, useParams } from "react";
+import { useHistory } from 'react-router-dom'
 import ApiOption from '../../api/ApiOption'
 import QuizCards from "./QuizCards"
-import Routes from '../../router/Routes'
+// import Routes from '../../router/Routes'
 
-const UserAnswer = (props) => {
-    let history = useHistory();
+function FriendAnsQuiz(props) {
+    // const { username,name } = useParams();
+
+    const history = useHistory();
     const [items, setItems] = useState([]);
     const [showButton, setShowButton] = useState(true);
-    const [userName, setUserName] = useState('');
-    const [userAnswer, setUserAnswer] = useState({});
+    const [Name, setName] = useState([]);
+    const [friendAnswer, setFriendAnswer] = useState({});
 
     useEffect(() => {
-        setUserName(props.location.customNameData);          //get from props the user name
+        setName(props.location.customNameData);          //get from props the user name
         ApiOption.getAllQuiz()                                  //make request get all quiz
             .then(response => {
                 console.log('get all quiz');
@@ -41,7 +43,8 @@ const UserAnswer = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        ApiOption.updateUser(userName, userAnswer)                  //make request to update user answer
+        console.log('answer of friend');
+        ApiOption.updateFriend(Name.username, Name.name, friendAnswer)                  //make request to update user answer
             .then(response => {
                 console.log('update user answer');
                 console.log(response.data)
@@ -51,30 +54,30 @@ const UserAnswer = (props) => {
             });
 
         history.push({
-            pathname: `${Routes.viewMyAnswers}`,
-            customNameData: userName,
+            pathname: `/quiz/${Name.username}/viewFriendsAns/${Name.name}`,
+            customNameData: Name.name,
         });
     }
 
     const handleOptionChange = (event) => {
         const questionNumber = event.target.id;
         const answerNumber = event.target.value;
-        const prevUserAnswer = userAnswer;
-        setUserAnswer({ ...prevUserAnswer, [`q${questionNumber}`]: answerNumber });
-        console.log(userAnswer);
+        const prevUserAnswer = friendAnswer;
+        setFriendAnswer({ ...prevUserAnswer, [`q${questionNumber}`]: answerNumber });
+        console.log(friendAnswer);
         console.log(event.target);
     }
 
     return (
         <div className='container-me'>
-            {console.log('items - render', items)}
+            {console.log( 'FriendAnsQuiz' ,Name.username,Name.name)}
             <div>
-                <h1>{`${userName}`} Quiz</h1>
+                <h1>friend {`${Name.name}`} Quiz</h1>
                 <p> select the correct answer for each of your questions:</p>
             </div>
             <form onSubmit={onSubmit}>
                 {items && items.map((item, index) => (
-                    <QuizCards userName={userName} key={index} id={index} q={item.question}
+                    <QuizCards userName={Name.name} key={index} id={index} q={item.question}
                         ans1={item.answer1} ans2={item.answer2} ans3={item.answer3} ans4={item.answer4} onChange={handleOptionChange}
                     />
                 ))}
@@ -83,6 +86,9 @@ const UserAnswer = (props) => {
                 }
             </form>
         </div>
-    )
-}
-export default UserAnswer
+    );
+};
+
+export default FriendAnsQuiz;
+
+

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import apiOption from '../../api/ApiOption'
+import React, { useState } from "react";
 import './cards.css'
 
 function QuizCards(props) {
